@@ -1,0 +1,30 @@
+version: "3"
+services:
+  setup-password:
+    image: eclipse-mosquitto:latest
+    container_name: setup-password
+    volumes:
+      - ./config/passwd:/mosquitto/config/passwd
+    command: sh -c "chown root:root /mosquitto/config/passwd && mosquitto_passwd -U /mosquitto/config/passwd && rm -f /docker-entrypoint-initdb.d/setup-password.sh"
+
+    networks:
+      - mqtt-network
+
+  mqtt-broker:
+    image: eclipse-mosquitto:latest
+    container_name: mqtt-broker
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./config/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - ./config/passwd:/mosquitto/config/passwd
+      - ./data:/mosquitto/data
+      - ./log:/mosquitto/log
+    depends_on:
+      - setup-password
+    networks:
+      - mqtt-network
+
+networks:
+  mqtt-network:
