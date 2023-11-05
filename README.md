@@ -16,7 +16,7 @@ docker-compose up -d
 
 This Docker Compose file sets up the MQTT broker and initializes the password file for MQTT authentication, providing a ready-to-use MQTT broker environment with the required configuration.
 
-### `setup-password` Service
+#### `setup-password` Service
 
 - **Purpose**: This service is responsible for setting up a password file for the MQTT broker's authentication.
 - **Image**: It uses the `eclipse-mosquitto` image.
@@ -24,7 +24,7 @@ This Docker Compose file sets up the MQTT broker and initializes the password fi
 - **Command**: It changes ownership of the password file, updates it with new passwords, and removes the setup script.
 - **Network**: It is part of the `mqtt-network`.
 
-### `mqtt-broker` Service
+#### `mqtt-broker` Service
 
 - **Purpose**: This service runs the MQTT broker itself.
 - **Image**: It also uses the `eclipse-mosquitto` image.
@@ -33,7 +33,7 @@ This Docker Compose file sets up the MQTT broker and initializes the password fi
 - **Dependencies**: It depends on the `setup-password` service to ensure authentication setup.
 - **Network**: It is part of the `mqtt-network`.
 
-### `mqtt-network`
+#### `mqtt-network`
 
 - **Purpose**: This network is created to allow communication between the `setup-password` and `mqtt-broker` services.
 
@@ -67,6 +67,7 @@ You can find the frontend code in the `frontend/` directory.
    ```bash
    cd backend
    npm install
+   
    node run pub # for running publisher
 
    node run sub # for running subscriber
