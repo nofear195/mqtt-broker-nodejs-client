@@ -3,6 +3,15 @@
 # Ensure the script exits if any command fails
 set -e
 
+# Pull the Mosquitto image
+docker pull eclipse-mosquitto:2.0.18
+
+# Create the config directory if it doesn't exist
+mkdir -p ./config
+
+# Create an empty password file if it doesn't exist
+touch ./config/passwd
+
 # Define variables
 IMAGE="eclipse-mosquitto:2.0.18"
 VOLUME_PATH="$(pwd)/config/passwd"
