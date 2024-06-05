@@ -1,8 +1,8 @@
 const mqtt = require('mqtt');
 
-const client = mqtt.connect('mqtt://192.168.1.101:1883',{
-    username:'user123',
-    password:'123'
+const client = mqtt.connect('mqtt://mqtt-broker:1883',{
+    username:'user',
+    password:'user'
 });
 
 client.on('connect', () => {

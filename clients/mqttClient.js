@@ -1,5 +1,14 @@
 const mqtt = require("mqtt");
 
+function isValidJSON(str) {
+  try {
+    JSON.parse(str);
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
 class MqttClient {
   constructor(name, url, username, password, topics) {
     this.name = name;
@@ -34,7 +43,8 @@ class MqttClient {
 
       this.client.on("message", async (topic, message) => {
         const messageToString = message.toString();
-        const messageContent = JSON.parse(messageToString);
+
+        const messageContent = isValidJSON(messageToString) ? JSON.parse(messageToString) : messageToString;
         this.handleMessage(topic, messageContent);
       });
     });
@@ -43,10 +53,10 @@ class MqttClient {
     await this.client.endAsync(true);
   }
   handleMessage(topic, message) {
-    // console.log(topic, messageContent);
+    console.log(topic, message);
   }
   handleError() {}
   handleClose() {}
 }
 
-module.exports = { MqttClient };
+module.exports = MqttClient;

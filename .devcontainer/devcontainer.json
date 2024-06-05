@@ -1,9 +1,6 @@
 {
 	"name": "Node.js & TypeScript",
 	"image": "mcr.microsoft.com/devcontainers/typescript-node:0-18",
-	"features": {
-		"ghcr.io/devcontainers/features/git:1": {}
-	},
 	"runArgs": [
         "--network=mqtt-broker_default"
     ],
