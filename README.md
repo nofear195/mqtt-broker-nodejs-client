@@ -44,7 +44,7 @@ docker-compose up -d
    - Example of how to receive messages from the broker
 
 3. `clients/mqttClient.js` + `clients/index.js`
-   - Example for using a customize class `mqttClientss` to handle the basic usage as a subscriber of the broker
+   - Example for using a customize class `mqttClient` to handle the basic usage as a subscriber of the broker
 
 ## More Information
    - [https://nofear195.github.io/posts/mqtt-deployment](https://nofear195.github.io/posts/mqtt-deployment)
